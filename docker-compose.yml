@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  tucan_grade_notifier:
+    image: kriskhub_tucan_grade_notifier
+    build: ./
+    restart: unless-stopped
+    volumes:
+      - ./tucan_grade_notifier/data:/var/data
