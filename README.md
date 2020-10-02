@@ -1,7 +1,6 @@
 # TUCAN Grade Crawler
 
-This tool searches at intervals for the latest grades from the TU Darmstadt campus management website and stores them locally in a database.
-If required, an e-mail address can be added to the execution to be notified by e-mail for each updated grade.
+This tool searches at intervals for the latest grades from the TU Darmstadt campus management website and stores them locally in a database. If desired, an e-mail address can be added to the execution in order to get notified by e-mail for each updated grade.
 
 ## Setup
 
