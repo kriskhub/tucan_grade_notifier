@@ -15,7 +15,13 @@ Python:
 
 ### Run Dockerized
 
-**An installation of [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/) is required in order to run the project.**
+#### Prerequisites
+
+* An installation of [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/) is required in order to run the project.
+
+* Update arguments in [Dockerfile](Dockerfile)
+
+#### Setup docker container:
 
 By running the following command from the root directory of the project all needed docker images should be downloaded and containers started in the correct order:
 
