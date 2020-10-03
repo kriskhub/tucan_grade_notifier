@@ -1,7 +1,6 @@
 # TUCAN Grade Crawler
 
-This tool searches at intervals for the latest grades from the TU Darmstadt campus management website and stores them locally in a database.
-If required, an e-mail address can be added to the execution to be notified by e-mail for each updated grade.
+This tool searches at intervals for the latest grades from the TU Darmstadt campus management website and stores them locally in a database. If desired, an e-mail address can be added to the execution in order to get notified by e-mail for each updated grade.
 
 ## Setup
 
@@ -15,7 +14,13 @@ Python:
 
 ### Run Dockerized
 
-**An installation of [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/) is required in order to run the project.**
+#### Prerequisites
+
+* An installation of [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/) is required in order to run the project.
+
+* Update arguments in [Dockerfile](Dockerfile)
+
+#### Setup docker container:
 
 By running the following command from the root directory of the project all needed docker images should be downloaded and containers started in the correct order:
 
