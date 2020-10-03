@@ -94,8 +94,14 @@ class GRADE_CRAWLER:
             self.db.insert_multiple(parsed_grades)
         else:
             for course in parsed_grades:
-                c = self.db.search(Query()['No.'] == course['No.'])[0]
-                if len(c) > 0 and c["Hash"] != course["Hash"]:
+                stored_course = self.db.search(Query()['No.'] == course['No.'])
+                if len(stored_course) == 0:
+                    # Examination is not in database
+                    self.db.insert(course)
+                    self.log.info("[!] New examination added to the database")
+                    if course["Final grade"] != "not set yet" or course["Final grade"] != "noch nicht gesetzt":
+                        self.notify(course)
+                if len(stored_course) > 0 and stored_course[0]["Final grade"] != course["Final grade"]:
                     self.db.update(course, where('No.') == course['No.'])
                     self.log.info("[!] New Grade!")
                     self.notify(course)
@@ -133,15 +139,14 @@ class GRADE_CRAWLER:
         self.log.info("[*] Finished crawl")
         return df
 
-    def notify(self, grade):
+    def notify(self, course):
         ''' If a mailaddress is provided the user will get a notification sent to the specific address'''
-
         if self.mailaddress:
             self.log.info("[*] Notify User by email")
             fromaddr = self.mailaddress
             toaddr = self.mailaddress
+            body = json.dumps(course)
             subject = '"[TUCAN] - New Grade Received"'
-            body = json.dumps(grade)
             cmd = 'echo ' + body + ' | mail -s ' + subject + ' ' + fromaddr + ' ' + toaddr
             subprocess.call(cmd, shell=True)
             self.log.info("[*] Email sent")
