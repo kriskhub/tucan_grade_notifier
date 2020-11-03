@@ -18,7 +18,10 @@ Python:
 
 * An installation of [Docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/) is required in order to run the project.
 
-* Update arguments in [Dockerfile](Dockerfile)
+* Update arguments in the [Script](entrypoint.sh)
+  * -u <uniquetuid>: Your TU-ID
+  * -p <password>: Your password
+  * -m <mail@example.com>: Your email address where you want be notified
 
 #### Setup docker container:
 
@@ -80,3 +83,4 @@ optional arguments:
 ### Example
 
 > ./tucan_grade_notifier.py -l debug.log --username uniquetuid --password strongpassword! --interval 60 --mailaddress me@webmail.com
+

@@ -6,4 +6,4 @@ services:
     build: ./
     restart: unless-stopped
     volumes:
-      - ./tucan_grade_notifier/data:/var/data
+      - ./data:/var/data

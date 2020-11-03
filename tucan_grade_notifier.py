@@ -75,6 +75,9 @@ class GRADE_CRAWLER:
         self.log.debug("Setting up schedule: One request every" + str(args.interval) + "minute")
         schedule.every(args.interval).minutes.do(self.check_grades)
 
+        self.log.debug("Start initial check")
+        self.check_grades()
+
         self.log.debug("Starting scheduler")
         while True:
             schedule.run_pending()
@@ -146,8 +149,8 @@ class GRADE_CRAWLER:
             fromaddr = self.mailaddress
             toaddr = self.mailaddress
             body = json.dumps(course)
-            subject = '"[TUCAN] - New Grade Received"'
-            cmd = 'echo ' + body + ' | mail -s ' + subject + ' ' + fromaddr + ' ' + toaddr
+            content = '"Subject: [TUCAN] - New Grade Received\n\n' + body + '"'
+            cmd = 'echo ' + content + ' | sendmail ' + toaddr
             subprocess.call(cmd, shell=True)
             self.log.info("[*] Email sent")
 
